@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 import { ContactCard } from "../component/ContactCard.js";
@@ -8,6 +9,12 @@ export const Contacts = () => {
 	const [state, setState] = useState({
 		showModal: false
 	});
+
+	const { actions, store } = useContext(Context);
+	useEffect(function() {
+		actions.obtenerInfo();
+		console.log(store.contacts);
+	}, []);
 
 	return (
 		<div className="container">
@@ -19,10 +26,12 @@ export const Contacts = () => {
 				</p>
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
-						<ContactCard onDelete={() => setState({ showModal: true })} />
-						<ContactCard />
-						<ContactCard />
-						<ContactCard />
+						{store.contacts.map((item, index) => {
+
+							return <ContactCard key={index} onDelete={() => setState({ showModal: true })} />
+							
+							
+						})};
 					</ul>
 				</div>
 			</div>
