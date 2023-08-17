@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 export const AddContact = () => {
-	const { actions, store } = useContext(Context);
+	const { actions } = useContext(Context);
 	const [nombre, setNombre] = useState("");
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
@@ -61,7 +61,7 @@ export const AddContact = () => {
 							id="address1"
 						/>
 					</div>
-					<button type="button " className="btn btn-primary form-control">
+					<button type="button " onClick={() => Cambios()} className="btn btn-primary form-control">
 						save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
