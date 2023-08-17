@@ -6,16 +6,16 @@ const getState = ({ getStore, setStore, getAction }) => {
 		},
 
 		actions: {
-			CRUS: async function() {
+			CRUS: async function(nombre, email, phone, address) {
 				try {
 					const respu = await fetch("https://playground.4geeks.com/apis/fake/contact", {
 						method: "POST",
 						body: JSON.stringify({
-							full_name: "Dave Bradley",
-							email: "dave@gmail.com",
+							full_name: { nombre },
+							email: { email },
 							agenda_slug: "JorgeMRs",
-							address: "47568 NW 34ST, 33434 FL, USA",
-							phone: "099287051"
+							address: { address },
+							phone: { phone }
 						}),
 						headers: {
 							"Content-Type": "application/json"
