@@ -10,20 +10,22 @@ const getState = ({ getStore, setStore, getAction }) => {
 				try {
 					const respu = await fetch("https://playground.4geeks.com/apis/fake/contact", {
 						method: "POST",
-						body: JSON.stringify({
-							full_name: { nombre },
-							email: { email },
-							agenda_slug: "JorgeMRs",
-							address: { address },
-							phone: { phone }
-						}),
+
 						headers: {
 							"Content-Type": "application/json"
-						}
+						},
+
+						body: JSON.stringify({
+							full_name: nombre,
+							email: email,
+							agenda_slug: "JorgeMRs",
+							address: address,
+							phone: phone
+						})
 					});
 
 					const data = await respu.json();
-					console.log(data);
+					console.log("Flux: = CRSU = " + data);
 				} catch (error) {
 					console.log(error);
 				}

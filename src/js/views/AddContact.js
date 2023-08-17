@@ -1,16 +1,26 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const AddContact = () => {
-	const { actions } = useContext(Context);
+	const { actions, store } = useContext(Context);
 	const [nombre, setNombre] = useState("");
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [address, setAddress] = useState("");
 
+	//Agregar contacto
 	function Cambios() {
-		actions.CRUS(nombre, email, phone, address);
+		if ((nombre === "") & (email === "") & (phone === "") & (address === "")) {
+			alert("No mi loco");
+		} else {
+			actions.CRUS(nombre, email, phone, address);
+		}
 	}
+
+	useEffect(function() {
+		actions.obtenerInfo();
+	}, []);
 
 	return (
 		<div className="container">
