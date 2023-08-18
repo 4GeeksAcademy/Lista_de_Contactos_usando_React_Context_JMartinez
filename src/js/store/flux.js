@@ -1,8 +1,9 @@
-const getState = ({ getStore, setStore, getAction }) => {
+const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
 			//Your data structures, A.K.A Entities
-			contacts: []
+			contacts: [],
+			prueba: {}
 		},
 
 		actions: {
@@ -26,6 +27,46 @@ const getState = ({ getStore, setStore, getAction }) => {
 
 					const data = await respu.json();
 					console.log("Flux: = CRSU = " + data);
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+			Borrar: async function(id) {
+				console.log(id);
+				try {
+					const respu = await fetch("https://playground.4geeks.com/apis/fake/contact/" + id, {
+						method: "DELETE",
+
+						headers: {
+							"Content-Type": "application/json"
+						}
+					});
+
+					const data = await respu.json();
+					console.log("Flux: = borrar = " + data);
+					getActions().obtenerInfo();
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
+			CargarContact: async function(id) {
+				console.log(id);
+				try {
+					const respu = await fetch("https://playground.4geeks.com/apis/fake/contact/" + id, {
+						method: "GET",
+
+						headers: {
+							"Content-Type": "application/json"
+						}
+					});
+
+					const data = await respu.json();
+
+					setStore({ prueba: data });
+					console.log("Flux: = borrar = " + data);
+					/* getActions().obtenerInfo(); */
 				} catch (error) {
 					console.log(error);
 				}

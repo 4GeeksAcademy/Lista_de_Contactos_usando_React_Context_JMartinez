@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
+import { Modal_Editar } from "./Modal_Editar";
 
 export const ContactCard = props => {
 	const [state, setState] = useState({
@@ -23,7 +24,7 @@ export const ContactCard = props => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn">
+						<button className="btn" onClick={() => props.onDelete_E()}>
 							<i className="fas fa-pencil-alt mr-3" />
 						</button>
 						<button className="btn" onClick={() => props.onDelete()}>
@@ -60,9 +61,10 @@ export const ContactCard = props => {
  * Define the data-types for
  * your component's properties
  **/
-ContactCard.propTypes = {
+Modal_Editar.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func,
+	onDelete_E: PropTypes.func,
 	name: PropTypes.string,
 	email: PropTypes.string,
 	phone: PropTypes.string,
@@ -73,6 +75,7 @@ ContactCard.propTypes = {
  * Define the default values for
  * your component's properties
  **/
-ContactCard.defaultProps = {
-	onDelete: null
+Modal_Editar.defaultProps = {
+	onDelete: null,
+	onDelete_E: null
 };
